@@ -1,0 +1,558 @@
+%Sorun tespiti için görüşülen kişiler;
+%Ertuğrul Uyanık: İnşaat Mühendisi ve Müteahhit, Tokatlı
+%Hasan Özdemir: Müteahhit, Malatyalı
+%Sunulan çözüm;
+%İnşaat malzemesi alınırken ürünün dönemsel ya da günlük fiyat karşılaştırması ve grafik oluşturma, 
+%alınacak miktara göre maliyet hesabı ve ürünlerin avantaj kıyaslamasının yapılması
+%Ödevi github hesabıma yükledim, hesabım: Melih60
+%Uygulamaşu şekilde kullanılmaktadır:
+%"Avantaj" yazan edit text satırına ürününün avantajlarını yazıp,
+%"Ekle", "Sil", "Tümünü Sil" tuşları yardımıyla ürünün avantajlarının
+%sıralı olduğu bir liste hazırlanıp diğer ürünlerle kıyaslanılabilir,
+%programa ürünü alacağımız miktar ve ürünün fiyatı girilerek, "=" tuşuna tıklayarak ürüne
+%ödeyeceğimiz ücret hesaplanabilir, "A/B/C/D Marka Ürün m^3" yazan edit text satırlara
+%ürünün adı ve birim cinsi yazılabilir, ismin göz önünde bulunması için
+%ekle tuşunun solundaki renkli edit text satırına ürünün günlük birim
+%fiyatını yazıp ekle tuşuna tıkldığımızda renkli satırın yanındaki beyaz
+%edit textte yazan gün bir sonraki güne geçecektir ve renkli edit texte
+%yazdığımız değer de tabloya eklenecektir bu şekilde diğer ürünlerle
+%haftalık, aylık ya da yıllık fiyat değişimleri kıyaslanabilir, isteğe
+%bağlı olarak ekle butonunun solundaki beyaz edit texte istediğimiz bir
+%günü girip, o günün birim fiyatında bir değişiklik yapılabilmektedir
+
+function varargout = finalGrafik(varargin)
+
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @finalGrafik_OpeningFcn, ...
+                   'gui_OutputFcn',  @finalGrafik_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+
+function finalGrafik_OpeningFcn(hObject, eventdata, handles, varargin)
+
+handles.output = hObject;
+
+
+guidata(hObject, handles);
+
+
+function varargout = finalGrafik_OutputFcn(hObject, eventdata, handles) 
+
+varargout{1} = handles.output;
+
+
+function pushbutton1_Callback(hObject, eventdata, handles)
+
+a=get(handles.sayac,'String');
+a=str2num(a);
+b=get(handles.veriGir,'String');
+b=str2num(b);
+global A
+A(a,1)=a;
+A(a,2)=b;
+axes(handles.axes1);
+plot(A(:,1),A(:,2),'g-')
+a=a+1;
+set(handles.sayac,'String',a);
+
+
+function sayac_Callback(hObject, eventdata, handles)
+
+function sayac_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function veriGir_Callback(hObject, eventdata, handles)
+
+
+
+function veriGir_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function sayac2_Callback(hObject, eventdata, handles)
+
+
+
+function sayac2_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function veriGir2_Callback(hObject, eventdata, handles)
+
+
+function veriGir2_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function pushbutton2_Callback(hObject, eventdata, handles)
+
+c=get(handles.sayac2,'String');
+c=str2num(c);
+d=get(handles.veriGir2,'String');
+d=str2num(d);
+global B
+B(c,1)=c;
+B(c,2)=d;
+axes(handles.axes2);
+plot(B(:,1),B(:,2),'r-')
+c=c+1;
+set(handles.sayac2,'String',c);
+
+function edit1_Callback(hObject, eventdata, handles)
+
+function edit1_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit2_Callback(hObject, eventdata, handles)
+
+function edit2_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit3_Callback(hObject, eventdata, handles)
+
+function edit3_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit4_Callback(hObject, eventdata, handles)
+
+function edit4_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+function pushbutton5_Callback(hObject, eventdata, handles)
+a=str2num(get(handles.edit3,'String'));
+b=get(handles.edit4,'String');
+b=str2num(b);
+c=a*b;
+c=num2str(c);
+set(handles.edit5,'String',c);
+
+function edit5_Callback(hObject, eventdata, handles)
+
+function edit5_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit6_Callback(hObject, eventdata, handles)
+
+function edit6_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit7_Callback(hObject, eventdata, handles)
+
+function edit7_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+function pushbutton10_Callback(hObject, eventdata, handles)
+a=str2num(get(handles.edit6,'String'));
+b=get(handles.edit7,'String');
+b=str2num(b);
+c=a*b;
+c=num2str(c);
+set(handles.edit8,'String',c);
+
+
+function edit8_Callback(hObject, eventdata, handles)
+
+function edit8_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function listbox1_Callback(hObject, eventdata, handles)
+
+function listbox1_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+function listbox2_Callback(hObject, eventdata, handles)
+
+function listbox2_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit9_Callback(hObject, eventdata, handles)
+
+function edit9_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit10_Callback(hObject, eventdata, handles)
+
+function edit10_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function pushbutton11_Callback(hObject, eventdata, handles)
+eklenecek=get(handles.edit9,'string');
+liste=get(handles.listbox1,'string');
+yeniliste=strvcat(liste,eklenecek);
+set(handles.listbox1,'string',yeniliste);
+
+
+function pushbutton12_Callback(hObject, eventdata, handles)
+eklenecek=get(handles.edit10,'string');
+liste=get(handles.listbox2,'string');
+yeniliste=strvcat(liste,eklenecek);
+set(handles.listbox2,'string',yeniliste);
+
+
+function pushbutton13_Callback(hObject, eventdata, handles)
+secim=get(handles.listbox1,'value');
+liste=get(handles.listbox1,'string');
+liste(secim,:)=[];
+set(handles.listbox1,'string',liste);
+if secim==1
+    set(handles.listbox1,'value',1);
+else
+    set(handles.listbox1,'value',secim-1);
+end
+
+function pushbutton14_Callback(hObject, eventdata, handles)
+secim=get(handles.listbox2,'value');
+liste=get(handles.listbox2,'string');
+liste(secim,:)=[];
+set(handles.listbox2,'string',liste);
+if secim==1
+    set(handles.listbox2,'value',1);
+else
+    set(handles.listbox2,'value',secim-1);
+end
+function pushbutton15_Callback(hObject, eventdata, handles)
+set(handles.listbox1,'string','');
+set(handles.listbox1,'string');
+
+
+function pushbutton16_Callback(hObject, eventdata, handles)
+set(handles.listbox2,'string','');
+set(handles.listbox2,'string');
+
+function uipanel1_CreateFcn(hObject, eventdata, handles)
+
+
+
+function edit36_Callback(hObject, eventdata, handles)
+
+function edit36_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function pushbutton17_Callback(hObject, eventdata, handles)
+eklenecek=get(handles.edit36,'string');
+liste=get(handles.listbox3,'string');
+yeniliste=strvcat(liste,eklenecek);
+set(handles.listbox3,'string',yeniliste);
+
+
+function pushbutton18_Callback(hObject, eventdata, handles)
+secim=get(handles.listbox3,'value');
+liste=get(handles.listbox3,'string');
+liste(secim,:)=[];
+set(handles.listbox3,'string',liste);
+if secim==1
+    set(handles.listbox3,'value',1);
+else
+    set(handles.listbox3,'value',secim-1);
+end
+
+function pushbutton19_Callback(hObject, eventdata, handles)
+set(handles.listbox3,'string','');
+set(handles.listbox3,'string');
+
+
+function listbox3_Callback(hObject, eventdata, handles)
+
+function listbox3_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit37_Callback(hObject, eventdata, handles)
+
+function edit37_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit38_Callback(hObject, eventdata, handles)
+
+
+
+% --- Executes during object creation, after setting all properties.
+function edit38_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function pushbutton20_Callback(hObject, eventdata, handles)
+a=str2num(get(handles.edit37,'String'));
+b=get(handles.edit38,'String');
+b=str2num(b);
+c=a*b;
+c=num2str(c);
+set(handles.edit39,'String',c);
+
+
+
+function edit39_Callback(hObject, eventdata, handles)
+
+
+
+function edit39_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit40_Callback(hObject, eventdata, handles)
+
+function edit40_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function sayac3_Callback(hObject, eventdata, handles)
+
+function sayac3_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function veriGir3_Callback(hObject, eventdata, handles)
+
+function veriGir3_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function pushbutton36_Callback(hObject, eventdata, handles)
+c=get(handles.sayac3,'String');
+c=str2num(c);
+d=get(handles.veriGir3,'String');
+d=str2num(d);
+global B
+B(c,1)=c;
+B(c,2)=d;
+axes(handles.axes9);
+plot(B(:,1),B(:,2),'y-')
+c=c+1;
+set(handles.sayac3,'String',c);
+
+
+
+function edit66_Callback(hObject, eventdata, handles)
+
+function edit66_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function pushbutton37_Callback(hObject, eventdata, handles)
+eklenecek=get(handles.edit66,'string');
+liste=get(handles.listbox7,'string');
+yeniliste=strvcat(liste,eklenecek);
+set(handles.listbox7,'string',yeniliste);
+
+
+function pushbutton38_Callback(hObject, eventdata, handles)
+secim=get(handles.listbox7,'value');
+liste=get(handles.listbox7,'string');
+liste(secim,:)=[];
+set(handles.listbox7,'string',liste);
+if secim==1
+    set(handles.listbox7,'value',1);
+else
+    set(handles.listbox7,'value',secim-1);
+end
+
+function pushbutton39_Callback(hObject, eventdata, handles)
+set(handles.listbox7,'string','');
+set(handles.listbox7,'string');
+
+
+function listbox7_Callback(hObject, eventdata, handles)
+
+function listbox7_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit67_Callback(hObject, eventdata, handles)
+
+function edit67_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit68_Callback(hObject, eventdata, handles)
+
+function edit68_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function pushbutton40_Callback(hObject, eventdata, handles)
+a=str2num(get(handles.edit67,'String'));
+b=get(handles.edit68,'String');
+b=str2num(b);
+c=a*b;
+c=num2str(c);
+set(handles.edit69,'String',c);
+
+
+
+
+function edit69_Callback(hObject, eventdata, handles)
+
+function edit69_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit70_Callback(hObject, eventdata, handles)
+
+function edit70_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function sayac4_Callback(hObject, eventdata, handles)
+
+function sayac4_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function veriGir4_Callback(hObject, eventdata, handles)
+
+function veriGir4_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+function pushbutton41_Callback(hObject, eventdata, handles)
+c=get(handles.sayac4,'String');
+c=str2num(c);
+d=get(handles.veriGir4,'String');
+d=str2num(d);
+global B
+B(c,1)=c;
+B(c,2)=d;
+axes(handles.axes10);
+plot(B(:,1),B(:,2))
+c=c+1;
+set(handles.sayac4,'String',c);
